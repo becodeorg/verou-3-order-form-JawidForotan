@@ -73,16 +73,6 @@
 
         <button type="submit" class="btn btn-primary">Order!</button>
     </form>
-    <div>
-        <p>
-           <?php
-    
-    whatIsHappening($_POST["email"],$_POST["street"],$_POST["streetNumber"],$_POST["city"],$_POST["zipCode"]);
-    ?>
-        </p>
-    
-    </div>
-  
     <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in food and drinks.</footer>
 </div>
 

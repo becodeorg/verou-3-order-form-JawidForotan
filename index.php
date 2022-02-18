@@ -9,17 +9,6 @@ declare(strict_types=1);
 // We are going to use session variables so we need to enable sessions
 session_start();
 
-// Use this function when you need to need an overview of these variables
-function whatIsHappening($email, $street, $streetNum, $city, $zipCode) {
-    echo "<h3>Order Info:</h3><br/>";
-    echo  "Email: $email <br/>";
-    echo  "Street: $street <br/>";
-    echo  "Street nr: $streetNum <br/>";
-    echo  "City: $city <br/>";
-    echo  "Zip code: $zipCode <br/>";
-}
-
-
 // TODO: provide some products (you may overwrite the example)
 $products = [
     ['name' => 'Coca cola', 'price' => 2],
@@ -27,25 +16,39 @@ $products = [
     ['name' => 'Lemonade', 'price' => 1],
     ['name' => 'Red bull', 'price' => 1.5],
 ];
-  
-foreach ($products as $prod => $value) {
-    echo $prod . "\n";
-    foreach ($value as $sub_key => $sub_val) {
-                  
-        // If sub_val is an array then again
-        // iterate through each element of it
-        // else simply print the value of sub_key
-        // and sub_val
-        if (is_array($sub_val)) {
-            echo $sub_key . " : \n";
-            foreach ($sub_val as $k => $v) {
-                echo "\t" .$k . " = " . $v . "\n";
-            }
-        } else {
-            echo $sub_key . " = " . $sub_val . "\n";
-        }
-    }
+
+
+function address($city, $street, $streetNum){
+  echo "<h3>Address:</h3><br/>";
+  echo "City: $city <br/> Street: $street <br/> Street num: $streetNum <br/>";
 }
+
+if(!empty($_POST["city"]) && !empty($_POST["street"]) && !empty($_POST["streetNumber"])){
+  address($_POST["city"], $_POST["street"],$_POST["streetNumber"]);
+}else{
+  echo "The fields should not be empty <br/>";
+}
+
+function orderInfo($products){
+    echo "<h3>Order Info:</h3><br/>";
+    if(!empty($_POST["products"])){
+        foreach($_POST["products"] as $key => $value){
+     print($products[$key]["name"]);
+     
+}
+
+    }else{
+        echo "You must select a product";
+    }
+
+}
+orderInfo($products);
+
+
+
+
+  
+
 
 $totalValue = 0;
 
