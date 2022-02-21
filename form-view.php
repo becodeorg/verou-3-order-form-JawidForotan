@@ -32,6 +32,7 @@
             <div class="form-group col-md-6">
                 <label for="email">E-mail:</label>
                 <input type="email" id="email" name="email" class="form-control"/>
+              
             </div>
             <div></div>
         </div>
@@ -39,7 +40,7 @@
         <fieldset>
             <legend>Address</legend>
 
-            <div class="form-row">
+            <div class="form-row" <?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>>
                 <div class="form-group col-md-6">
                     <label for="street">Street:</label>
                     <input type="text" name="street" id="street" class="form-control">
@@ -53,6 +54,7 @@
                 <div class="form-group col-md-6">
                     <label for="city">City:</label>
                     <input type="text" id="city" name="city" class="form-control">
+                    
                 </div>
                 <div class="form-group col-md-6">
                     <label for="zipCode">Zip code</label>
@@ -60,7 +62,6 @@
                 </div>
             </div>
         </fieldset>
-
         <fieldset>
             <legend>Products</legend>
             <?php foreach ($products as $i => $product): ?>
@@ -70,9 +71,14 @@
                     &euro; <?= number_format($product['price'], 2) ?></label><br />
             <?php endforeach; ?>
         </fieldset>
-
         <button type="submit" class="btn btn-primary">Order!</button>
     </form>
+    <br>
+    <?php
+    orderInfo($products);
+    echo totalPrice($products);
+    address();
+    ?>
     <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in food and drinks.</footer>
 </div>
 
